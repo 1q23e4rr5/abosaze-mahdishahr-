@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرکت عمرانی پیشرو | ساخت و سازهای مدرن 1404</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Yekan', 'Vazirmatn', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        /* هدر مدرن */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background-color: var(--glass);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: rgba(30, 58, 138, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* لوگوی مدرن */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* منوی مدرن */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* بخش هیرو */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+                        url('construction-bg.jpg') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* دکمه مدرن */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        /* بخش خدمات */
+        .services {
+            padding: 6rem 5%;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: #64748b;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* بخش پروژه‌ها */
+        .projects {
+            padding: 6rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        /* فوتر */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-about {
+            max-width: 300px;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-links h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin-top: 0.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* افکت‌های اسکرول */
+        [data-aos] {
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        [data-aos="fade-up"] {
+            transform: translateY(30px);
+        }
+
+        [data-aos="fade-down"] {
+            transform: translateY(-30px);
+        }
+
+        [data-aos="fade-right"] {
+            transform: translateX(-30px);
+        }
+
+        [data-aos="fade-left"] {
+            transform: translateX(30px);
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* نسخه موبایل */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header id="header">
+        <div class="logo">
+            <div class="logo-icon">NS</div>
+            <div class="logo-text">نوین سازه</div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#home">خانه</a>
+            <a href="#about">درباره ما</a>
+            <a href="#services">خدمات</a>
+            <a href="#projects">پروژه‌ها</a>
+            <a href="#contact">تماس</a>
+        </nav>
+        
+        <button class="mobile-menu-btn" aria-label="منو">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- بخش هیرو -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">ساخت آینده با استانداردهای جهانی</h1>
+            <p class="hero-subtitle">شرکت نوین سازه با بیش از 15 سال تجربه در صنعت ساخت و ساز، ارائه دهنده خدمات عمرانی با کیفیت و نوآورانه</p>
+            <a href="#contact" class="btn btn-primary">درخواست مشاوره</a>
+        </div>
+    </section>
+
+    <!-- بخش خدمات -->
+    <section class="services" id="services">
+        <h2 class="section-title">خدمات تخصصی ما</h2>
+        <p class="section-subtitle">با بهره‌گیری از آخرین تکنولوژی‌های روز دنیا در خدمت شما هستیم</p>
+        
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>ساختمان‌سازی مدرن</h3>
+                <p>طراحی و اجرای ساختمان‌های مسکونی، تجاری و اداری با استانداردهای روز دنیا</p>
+            </div>
+            
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon">
+                    <i class="fas fa-road"></i>
+                </div>
+                <h3>راه‌سازی و زیرساخت</h3>
+                <p>اجرای پروژه‌های راه‌سازی، پل‌سازی و توسعه زیرساخت‌های شهری</p>
+            </div>
+            
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>نوسازی و مقاوم‌سازی</h3>
+                <p>بهسازی و مقاوم‌سازی ساختمان‌های موجود با فناوری‌های نوین</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش پروژه‌ها -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">پروژه‌های اخیر</h2>
+        <p class="section-subtitle">نمونه‌ای از پروژه‌های اجرا شده توسط تیم متخصص ما</p>
+        
+        <div class="projects-grid">
+            <div class="project-card" data-aos="fade-up">
+                <img src="project1.jpg" alt="پروژه ساختمان تجاری" class="project-img">
+                <div class="project-overlay">
+                    <h3>ساختمان تجاری ستاره</h3>
+                    <p>تهران، منطقه مالی شهریار | 1403</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="project2.jpg" alt="پروژه پل شهری" class="project-img">
+                <div class="project-overlay">
+                    <h3>پل ارتباطی نیایش</h3>
+                    <p>شهرک غرب، تهران | 1402</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="project3.jpg" alt="پروژه نوسازی" class="project-img">
+                <div class="project-overlay">
+                    <h3>نوسازی مجتمع مسکونی</h3>
+                    <p>اصفهان، خیابان چهارباغ | 1401</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">NS</div>
+                    <div class="footer-logo-text">نوین سازه</div>
+                </div>
+                <p class="footer-about">شرکت نوین سازه با تکیه بر دانش روز و تجربه متخصصین خود، در زمینه اجرای پروژه‌های عمرانی بزرگ فعالیت می‌کند.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>لینک‌های سریع</h3>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-chevron-left"></i> خانه</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-left"></i> درباره ما</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-left"></i> خدمات</a></li>
+                    <li><a href="#projects"><i class="fas fa-chevron-left"></i> پروژه‌ها</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>تماس با ما</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> تهران، خیابان ولیعصر</a></li>
+                    <li><a href="tel:+982122223333"><i class="fas fa-phone"></i> 021-22223333</a></li>
+                    <li><a href="mailto:info@novinsaze.com"><i class="fas fa-envelope"></i> info@novinsaze.com</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>تمامی حقوق برای شرکت نوین سازه محفوظ است. © 1404</p>
+        </div>
+    </footer>
+
+    <script>
+        // افکت اسکرول هدر
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if(window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // انیمیشن‌های اسکرول
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('[data-aos]');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if(elementPosition < windowHeight - elementVisible) {
+                    element.classList.add('aos-animate');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // اجرای اولیه
+    </script>
+</body>
+</html>
